@@ -1,0 +1,193 @@
+/* CSS Document */
+body{
+	margin: 0px;
+	background-color: #282828;
+	font-family: silkscreen;
+	color: #fb9836;
+}
+li{
+	list-style-type: none;
+}
+/* width */
+::-webkit-scrollbar {
+  	width: 15px;
+	transform: translate(-100px,0px);
+}
+/* Track */
+::-webkit-scrollbar-track {
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+	border-radius: 50em;
+  	background: #4B4B4B; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  	background: #555; 
+}
+
+#background-canvas{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+}
+
+#container{
+	align-content: center;
+	justify-content: center;
+	background-color: #282828;
+	width: 100%;
+	height: 100%;
+}
+
+#home-header{
+	background-color:#363636;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	animation: headerdrop 1s linear;
+	animation-delay: 3s;
+	animation-fill-mode: backwards;
+}
+@keyframes headerdrop{
+	0%{
+		transform: translateY(-100%);
+	}
+	20%{
+		transform: translateY(-100%);
+	}
+	40%{
+		transform: translateY(-0%);
+	}
+	42%{
+		transform: translateY(-12%);
+	}
+	50%{
+		transform: translateY(-13%);
+	}
+	58%{
+		transform: translateY(-12%);
+	}
+	65%{
+		transform: translateY(0%);
+	}
+	100%{
+		transform: translateY(0%);
+	}
+}
+#nav-bar{
+	width: 40%;
+	left: 50%;
+}
+#nav-bar ul{
+	display: flex;
+	justify-content: space-around;
+}
+#center-container{
+	justify-content: center;
+	height: 100%;
+	width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+}
+
+#center-title{
+	align-self: center;
+	text-align: center;
+	white-space: nowrap;
+	width: 100%;
+}
+
+#center-title::after {
+  content: "|";
+  position: absolute;
+  right: 0.5;
+  animation: caret infinite;
+  animation-duration: 1s;
+  animation-timing-function: steps(1, end);
+}
+
+@keyframes caret {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+#bumble-logo{
+	align-self: center;
+	opacity: 1;
+	cursor: pointer;
+}
+@keyframes fadeInLogo {
+	0%{
+        opacity: 0;
+		cursor: auto;
+	}
+ 	50% { 
+        opacity: 0;
+		transform: translate(0px, 15px);
+		cursor: auto;
+    } 
+	100% { 
+		opacity: 1; 
+		transform: translate(0px, 0px);
+		cursor: auto;
+ 	} 
+}
+@keyframes shake{
+	0%{
+		transform: rotate(0deg);
+	}
+	20%{
+		transform: rotate(-5deg);
+	}
+	40%{
+		transform: rotate(5deg);
+	}
+	60%{
+		transform: rotate(-5deg);
+	}
+	80%{
+		transform: rotate(5deg);
+	}
+	100%{
+		transform: rotate(0deg);
+	}
+}
+@keyframes swarm{
+	0%{
+		transform: scale(1,1);
+	}
+	10%{
+		transform: scale(0.75,0.75);
+	}
+	12%{
+		transform: scale(0.8,0.8);
+	}
+	86%{
+		transform: scale(0.8,0.8);
+	}
+	90%{
+		transform: scale(0.75,0.75);
+	}
+	100%{
+		transform: scale(1,1);
+	}
+}
+
+#other-content{
+	width: 100%;
+	height: 5000px;
+}

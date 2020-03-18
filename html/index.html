@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>The Bumble Intiative</title>
+	<link rel="stylesheet" type="text/css" href="../style/stylesheet.css">
+	<script src="../javascript/index.js"></script>
+	<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+</head>
+
+<body onLoad="typeWriter();">
+	<canvas id="background-canvas"></canvas>
+	<div id="container">
+		<header id="home-header">
+			<nav id="nav-bar">
+				<ul>
+					<li class="nav-item">About</li>
+					<li class="nav-item">Portfolio</li>
+					<li class="nav-item">Contact</li>
+				</ul>
+			</nav>
+		</header>
+		<div id="center-container">
+			<image onLoad="logoFade()" onClick="logoClick()" id="bumble-logo" src="../assets/images/bumble.png" alt="logo" width="100" height="100"></image>
+			<h1 id="center-title"></h1>
+		</div>
+		<div id="other-content"></div>
+	</div>
+</body>
+</html>
