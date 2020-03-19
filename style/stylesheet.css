@@ -1,4 +1,8 @@
 /* CSS Document */
+@font-face {
+  font-family: silkscreen;
+  src: url("../assets/fonts/slkscre.ttf");
+}
 body{
 	margin: 0px;
 	background-color: #282828;
@@ -132,15 +136,18 @@ li{
 }
 @keyframes fadeInLogo {
 	0%{
+		pointer-events: none;
         opacity: 0;
 		cursor: auto;
 	}
  	50% { 
+		pointer-events: none;
         opacity: 0;
 		transform: translate(0px, 15px);
 		cursor: auto;
     } 
 	100% { 
+		pointer-events: auto;
 		opacity: 1; 
 		transform: translate(0px, 0px);
 		cursor: auto;
@@ -168,21 +175,27 @@ li{
 }
 @keyframes swarm{
 	0%{
+		pointer-events: none;
 		transform: scale(1,1);
 	}
 	10%{
+		pointer-events: none;
 		transform: scale(0.75,0.75);
 	}
 	12%{
+		pointer-events: none;
 		transform: scale(0.8,0.8);
 	}
-	86%{
+	76%{
+		pointer-events: none;
 		transform: scale(0.8,0.8);
 	}
-	90%{
+	80%{
+		pointer-events: none;
 		transform: scale(0.75,0.75);
 	}
 	100%{
+		pointer-events: auto;
 		transform: scale(1,1);
 	}
 }

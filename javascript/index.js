@@ -26,7 +26,7 @@ function logoClick(){
 		setTimeout(reset, 50, logo);
 		logoCounter++;
 	}else{
-		logo.style.animation = "swarm 4s";
+		logo.style.animation = "swarm 3s";
 		logo.style.animationFillMode = "forwards";
 		swarm();
 		logoCounter = 0;
@@ -52,53 +52,107 @@ function swarm() {
 	class Bee{
 		
 		constructor(){
-			this.origin = [ctx.canvas.width/2,ctx.canvas.height/2];
+			this.origin = [ctx.canvas.width/2,ctx.canvas.height/2-40];
 			this.pos = this.origin;
-			this.velocity = 100 + (Math.random() * 100);
-			this.theta = (Math.random() * 360) * Math.PI / 180;
-			this.gravity = 0;
-			this.dx = 1;
-			this.dy = 1;
+			this.velocity = 7 + (Math.random() * 5);
+			this.theta = (Math.random() * 360);
+			this.beeOpacity = 1;
+			//this.constraint = 0;
+			this.i = 0;
 		}
-		
+
 		drawingSquare() {
-			ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-			this.move();
-			this.rotate();
+			this.pos[0] += this.velocity * Math.cos(this.theta * Math.PI / 180);
+			this.pos[1] += this.velocity * Math.sin(this.theta * Math.PI / 180);
+			
+			if(this.i > 200){
+				if(this.beeOpacity < 0){
+					ctx.globalAlpha = 0;
+				}else{
+					ctx.globalAlpha = this.beeOpacity;
+				}
+				this.beeOpacity -= 0.025;
+			}
+			
 			ctx.beginPath();
-			ctx.translate(this.pos[0]-5, this.pos[1]-5);
-			ctx.rotate(this.theta);
-			ctx.translate(-this.pos[0]-5, -this.pos[1]-5);
-			ctx.fillRect(this.pos[0]-5, this.pos[1]-5, 10, 10);
+			ctx.moveTo(this.pos[0] + 7.5 * Math.cos((this.theta + 45) * Math.PI / 180), this.pos[1] + 7.5 *  Math.sin((this.theta + 45) * Math.PI / 180));
+			ctx.lineTo(this.pos[0] + 7.5 * Math.cos((this.theta + 135) * Math.PI / 180), this.pos[1] + 7.5 *  Math.sin((this.theta + 135) * Math.PI / 180));
+			ctx.lineTo(this.pos[0] + 7.5 * Math.cos((this.theta + 225) * Math.PI / 180), this.pos[1] + 7.5 *  Math.sin((this.theta + 225) * Math.PI / 180));
+			ctx.lineTo(this.pos[0] + 7.5 * Math.cos((this.theta + 315) * Math.PI / 180), this.pos[1] + 7.5 *  Math.sin((this.theta + 315) * Math.PI / 180));
 			ctx.fillStyle = "#fb9836";
+			ctx.fill();
 			ctx.closePath();
+			this.i++;
 		}
-		
+
 		rotate(){
-			this.theta = ((Math.random() * 90)-45) * Math.PI / 180;
-		}
-		
-		move(){
-			this.pos[0] += 1;
-			this.pos[1] += 1;
+			
+			
+			//Trying to get the bees to go off screen be constraining the angle at which the turn away from the origin
+			/*
+			var ran = this.theta + ((Math.random() * 90)-45);
+			var originTheta = Math.atan((this.pos[0] - this.origin[0])/(this.pos[0] - this.origin[0]))
+			if(this.i > 100){
+				this.constraint = ((10000/(-this.i + 100)) + 360);
+				
+				if((ran + 45) % 360 > (originTheta - this.constraint % 360)){
+					ran -= (ran - this.constraint);
+				}
+				if((ran - 45) % 360 < (originTheta + this.constraint % 360)){
+					ran += (this.constraint - ran);
+				}
+			}
+			this.theta = ran;
+			*/
+			
+			
+			
+			this.theta += ((Math.random() * 90)-45);
+			
 		}
 	}
 	
-	var bee = new Bee();
+	
+	function releaseBees(){
+		var bees = [];
+		for(var i = 0; i < 250; i++){
+			bees.push(new Bee());
+		}
+		return bees;
+	}
+	
+	var bees = releaseBees();
 	
 	function draw(){
-		bee.drawingSquare();
+		ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+		
+		
+		bees.forEach((element) => {
+			element.rotate();
+			element.drawingSquare();
+		})
 	}
 	
-	var test = setInterval(draw, 100);
-	var count = 0;
-	while(count < 5000){
-		count += 100;
-	}
-	clearInterval(test);
+	var test = setInterval(draw, 50);
+	var elem = document.getElementById("bumble-logo");
+	
+	elem.addEventListener("click", function(){
+		clearInterval(test);
+		ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+		delete Bee.bee;
+	})
+	
+	setTimeout(function(){
+		clearInterval(test);
+		ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+		delete Bee.bee;
+	}, 10000)
 }
 
 
+
+//function to swarm the mouse
+/*
 function findScreenCoords(mouseEvent){
 	var xpos = 0;
 	var ypos = 0;
@@ -116,3 +170,4 @@ function findScreenCoords(mouseEvent){
 	}
 	return [xpos, ypos];
 }
+*/
