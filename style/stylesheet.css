@@ -178,21 +178,25 @@ li{
 		pointer-events: none;
 		transform: scale(1,1);
 	}
-	10%{
+	3%{
 		pointer-events: none;
 		transform: scale(0.75,0.75);
 	}
-	12%{
+	4%{
 		pointer-events: none;
 		transform: scale(0.8,0.8);
 	}
-	76%{
+	22%{
 		pointer-events: none;
 		transform: scale(0.8,0.8);
 	}
-	80%{
+	24%{
 		pointer-events: none;
 		transform: scale(0.75,0.75);
+	}
+	30%{
+		pointer-events: none;
+		transform: scale(1,1);
 	}
 	100%{
 		pointer-events: auto;

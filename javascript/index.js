@@ -26,7 +26,7 @@ function logoClick(){
 		setTimeout(reset, 50, logo);
 		logoCounter++;
 	}else{
-		logo.style.animation = "swarm 3s";
+		logo.style.animation = "swarm 10s";
 		logo.style.animationFillMode = "forwards";
 		swarm();
 		logoCounter = 0;
@@ -65,7 +65,7 @@ function swarm() {
 			this.pos[0] += this.velocity * Math.cos(this.theta * Math.PI / 180);
 			this.pos[1] += this.velocity * Math.sin(this.theta * Math.PI / 180);
 			
-			if(this.i > 200){
+			if(this.i > 100){
 				if(this.beeOpacity < 0){
 					ctx.globalAlpha = 0;
 				}else{
@@ -136,14 +136,9 @@ function swarm() {
 	var test = setInterval(draw, 50);
 	var elem = document.getElementById("bumble-logo");
 	
-	elem.addEventListener("click", function(){
-		clearInterval(test);
-		ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-		delete Bee.bee;
-	})
-	
 	setTimeout(function(){
 		clearInterval(test);
+		ctx.globalAlpha = 1;
 		ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 		delete Bee.bee;
 	}, 10000)
